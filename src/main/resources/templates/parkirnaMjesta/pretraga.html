@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezultat pretrage</title>
+</head>
+
+<body>
+
+<h1>Rezultat pretrage</h1>
+
+<div th:if="${mjesto != null}">
+    <p>
+        Parkirno mjesto:
+        <span th:text="${mjesto.kodMjesta}"></span>
+    </p>
+
+    <p th:if="${mjesto.parkiran}">
+        Marka:
+        <span th:text="${mjesto.automobil.marka}"></span>
+    </p>
+
+    <p th:if="${mjesto.parkiran}">
+        Model:
+        <span th:text="${mjesto.automobil.model}"></span>
+    </p>
+
+    <p th:if="${mjesto.parkiran}">
+        Registracija:
+        <span th:text="${mjesto.automobil.registracija}"></span>
+    </p>
+</div>
+
+<p th:if="${mjesto == null}">
+    Parkirno mjesto nije pronađeno.
+</p>
+
+<a th:href="@{/garaza}">Natrag</a>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtualna Graza</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header th:replace="~{fragments :: header}"></header>
+
+<main>
+    <p id="message"  th:if="${message}" th:text="${message}"></p>
+    <form th:action="@{/garaza/pretraga}" method="get">
+        <input type="text" name="kodMjesta" placeholder="npr. A12">
+        <button type="submit">Pretraži</button>
+    </form>
+
+    <h1>Parkirani automobili</h1>
+    <tr th:each="mjesto : ${parkirnaMjesta}"  th:if ="${mjesto.parkiran}">
+
+        <td th:text="${mjesto.kodMjesta}"></td>
+        <td th:text="${mjesto.automobil.marka}"></td>
+        <td th:text="${mjesto.automobil.model}"></td>
+        <td th:text="${mjesto.automobil.registracija}"></td>
+        <td th:text="${#temporals.format(mjesto.timestamp, 'dd.MM.yyyy HH:mm:ss')}"></td>
+        <a th:href="@{/garaza/uredi/{kod}(kod=${mjesto.kodMjesta})}">
+            Ažuriraj informacije
+        </a>
+        <br>
+        <td>
+            <form th:action="@{/garaza/{id}/delete(id=${mjesto.p_id})}" method="post"  onsubmit="return confirm('Jeste li sigurni da želite isparkirati ovaj automobil?');">
+                <button type="submit">
+                    Isparkiraj
+                </button>
+
+            </form>
+        </td>
+    </tr>
+    <h3>Stanje garaže</h3>
+    <p><b>Zauzeto:</b> <span th:text="${zauzeto}"></span></p>
+    <p><b>Slobodno:</b> <span th:text="${slobodno}"></span></p>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+
+<script>
+    setTimeout(function () {
+        const message = document.getElementById("message");
+
+        if (message) {
+            message.remove();
+        }
+    }, 2000);
+</script>
+
+</body>
+</html>
+

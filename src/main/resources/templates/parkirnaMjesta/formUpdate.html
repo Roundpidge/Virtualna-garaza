@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<header th:replace="~{fragments :: header}"></header>
+
+<form th:action="@{/garaza/uredi}" th:object="${ParkirnoMjestoForm}" method="post">
+    <input type="text"  th:field="*{kodMjesta}" readonly >
+    <br>
+    <input type="text"  th:field="*{marka}">
+    <p th:if="${#fields.hasErrors('marka')}" th:errors="*{marka}"></p>
+    <br>
+    <input type="text" th:field="*{model}" >
+    <p th:if="${#fields.hasErrors('model')}" th:errors="*{model}">
+    </p>
+    <br>
+    <input type="text"  th:field="*{registracija}">
+    <p th:if="${#fields.hasErrors('registracija')}" th:errors="*{registracija}">
+    </p>
+    <br>
+    <button type="submit">Ažuriraj</button>
+</form>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

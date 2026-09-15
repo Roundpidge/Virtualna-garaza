@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<header th:replace="~{fragments :: header}"></header>
+
+<p id="message"  th:if="${message}" th:text="${message}"></p>
+<form th:action="@{/garaza/parkiraj}" th:object="${ParkirnoMjestoForm}" method="post">
+
+    <input type="text"  th:field="*{kodMjesta}" placeholder="npr. A12">
+    <p th:if="${#fields.hasErrors('kodMjesta')}" th:errors="*{kodMjesta}"></p>
+    <br>
+    <input type="text"  th:field="*{marka}" placeholder="npr. Bmw">
+    <p th:if="${#fields.hasErrors('marka')}" th:errors="*{marka}"></p>
+    <br>
+    <input type="text" th:field="*{model}" placeholder="npr. e60">
+    <p th:if="${#fields.hasErrors('model')}" th:errors="*{model}">
+    </p>
+    <br>
+    <input type="text"  th:field="*{registracija}" minlength="5" maxlength="10" placeholder="npr. PU-988-TP">
+    <p th:if="${#fields.hasErrors('registracija')}" th:errors="*{registracija}">
+    </p>
+    <br>
+    <button type="submit">Parkiraj</button>
+</form>
+<br>
+<img th:src="@{/images/garaza_prikaz.png}" class="garaza-slika" alt="Garaža">
+
+<footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+</html>

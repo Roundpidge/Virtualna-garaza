@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header">
+    <h1>Virtualna garaža</h1>
+    <nav>
+        <a th:href="@{/garaza}">Garaza</a>
+        <a th:href="@{/garaza/parkiraj}">Parkiraj automobil</a>
+    </nav>
+    <hr>
+</header>
+<footer th:fragment="footer">
+    <hr>
+    <p>Virtualna Garaža © 2026</p>
+</footer>
+</body>
+</html>
